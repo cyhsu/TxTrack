@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify, request
+from src.api.fetch import fetch
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def index():
 ###-
 ###-    return jsonify({'data': render_template('response.html', myList=myList)})
 
-@app.route('/json', methods=['POST', 'GET'])
+@app.route('/trajectory', methods=['POST', 'GET'])
 def json_example():
 	req = request.get_json()
 	print(req)
