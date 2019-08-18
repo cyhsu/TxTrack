@@ -1,18 +1,10 @@
-# leaflet.timedimention.trajectory
+# Particle Trajectories using High Frequency Radar
 
-     HFradar + Leaflet + TimeDimension + Trajectory
-=========================================================
+#### Project Structure
 
-
-
-	This Package is using Javascript library of Leaflet, Leaflet.TimeDimension, and self-developed Trajectory library. 
-
-
-		LICENSE
-	=============
-
-		The credit of this credit can be seperated into two parts.
-
-			1. Leaflet.TimeDimension from SOCIB, see License.
-
-			2. Leaflet.Trajectory from cyhsu
+	> {'Project short name': 'ParTHdar',
+	>  'Funding Source': 'Texas General Land Office', 
+	>  'Project PI': 'Steve DiMarco',
+	> 	'Project co-PI': 'Kerri Whilden',
+	>  'Web Creator': 'Chuan-Yuan Hsu',
+	>	'Institute': 'Geochemical and Environmental Research Group - Texas A&M University; Gulf of Mexico Ocean Observing System'}
