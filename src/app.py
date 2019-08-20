@@ -19,6 +19,10 @@ def index():
 def json_example():
 	req = request.get_json()
 	print(req)
+    SiteLon, SiteLat = req['lon'], req['lat']
+    SiteStartTime, SiteEndTime = req['start_time'], req['end_tme']
+    cls = fetch(SiteLon, SiteLat, SiteStartTime, SiteEndTime)
+    center, ensembles = cls.particle_integrate()
 	return jsonify({'data': 'Test!'})
 	# return 'Test!', 200
 

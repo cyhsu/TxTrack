@@ -14,10 +14,10 @@ html *{
     min-height: 80px;
 }
 
-#header a{
+/* #header a{
     text-decoration: none;
     color: #80bf43;
-}
+} */
 
 #footer {
     clear: both;
@@ -93,7 +93,7 @@ h1 small a{
     color: #777;
 }
 
-h3 { 
+h3 {
   display: block;
   font-size: 1.17em;
   margin-top: 1em;
@@ -373,33 +373,64 @@ div#gloseal
 {
 	margin-left : 0.1em;
 	margin-top: -.2em;
-    transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
 }
 
 div#tglo{
      --font-family: 'Open Sans Condensed', sans-serif;
-	 font-family: Frutiger 65, Bold;
+	 /* font-family: Frutiger 65, Bold; */
 	 font-size: 0.8em;
-     	margin-top: -0.5em;
-        margin-bottom: 0.3em;
-        margin-left: -0.2em;
-    margin-right: 1.5em;
-    color: #8B7844;
+   margin-top: -0.5em;
+   margin-bottom: 0.3em;
+   margin-left: -0.2em;
+   margin-right: 1.5em;
+   color: #8B7844;
 }
+
+div#title {
+    --font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+    margin-top: -1.5em;
+    margin-left: 2em;
+    margin-right: 2em;
+    font-size: 1.2em;
+    color: #000000;
+    width: 260px;
+}
+
+div#gerg {
+    margin-top: -2em;
+    margin-left: -5em;
+    width: 220px;
+    transform: scale(0.4, 0.4);
+    margin-bottom: -1.5em;
+}
+
 
 div#mobtitle{
     --font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: light;
     font-style: italic;
     font-size: 0.8em;
-	margin-top: -1.5em;
+	margin-top: -2.3em;
     color: #000000;
 }
 
-div#gerg{
-    margin-top: -2em;
-	margin-left: -3.5em;
-    transform: scale(0.5, 0.5);
-    margin-bottom: -1.5em;
-    width: 200;
+a.icon-social {
+    color: #8b7844;
+    font-size: 18px;
+}
+
+a.icon-social span.fa {
+    float: left;
+    margin: 0 8px 0 0;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
