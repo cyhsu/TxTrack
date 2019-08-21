@@ -3,9 +3,9 @@ var map = L.map('map', {
     fullscreenControl: true,
     timeDimension: true,
     timeDimensionOptions: {
-        timeInterval: "2019-06-01/2019-06-03",
+        // timeInterval: "2019-06-01/2019-06-03",
         period: "PT1H",
-        currentTime: Date.parse("2019-06-01T00:00:00Z")
+        // currentTime: Date.parse("2019-06-01T00:00:00Z")
     },
     timeDimensionControl: true,
     timeDimensionControlOptions: {
@@ -21,6 +21,12 @@ var map = L.map('map', {
         }
     },
     center: [27.855, -95.55],
+});
+
+var icon = L.icon({
+    iconUrl: '../data/img/Icon_OilSpill.png',  //set the icon you want to appear
+    iconSize: [22, 22],
+    iconAnchor: [5, 25]
 });
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

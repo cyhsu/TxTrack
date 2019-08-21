@@ -24,8 +24,34 @@ function submit_to_flask(site_info) {
     datatype:"json",
     contentType: "application/json",
     data: site_info,
-    success: function(resp){
-        console.log(resp.data);
-      }
+    // success: L.geoJson(trajectory,{
+    //     pointToLayer: function (feature, latLng) {
+    //         if (feature.properties.hasOwnProperty('last')) {
+    //             return new L.Marker(latLng, {
+    //                 icon: icon
+    //             });
+    //         }
+    //         return L.circleMarker(latLng);
+    //     }
+    // success: function(resp){
+    //     console.log(resp.status);
+    //   }
+    success: function(response) {
+              console.log(response);
+            },
+    error: function(error) {
+              console.log(error);
+            },
   })
 }
+
+var geoJsonLayer = L.geoJson(trajectory,{
+    pointToLayer: function (feature, latLng) {
+        if (feature.properties.hasOwnProperty('last')) {
+            return new L.Marker(latLng, {
+                icon: icon
+            });
+        }
+        return L.circleMarker(latLng);
+    }
+});

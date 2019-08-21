@@ -50,7 +50,6 @@ class fetch(object):
         self.ds = self.ds.sel(lon=slice(site_lon-3, site_lon+3),
                               lat=slice(site_lat-3, 31))
         self.ntim, self.nlat, self.nlon = self.ds.time.size, self.ds.lat.size, self.ds.lon.size
-
     def particle_move(self,vel,loc):
         lon, lat = loc
         ux, vx = vel
@@ -72,8 +71,8 @@ class fetch(object):
         ensembles = {}
         ensembles[0] = center.copy()
         for tid in range(1,self.ntim-1):
-            print(tid)
-            print('datetime process: {}'.format(self.ds.isel(time=tid).time.data))
+            # print(tid)
+            # print('\t\t\t  datetime process: {}'.format(self.ds.isel(time=tid).time.data))
             #-- center run calculation
             vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))
             loc = self.particle_move(vel, center[-1])
@@ -105,10 +104,10 @@ class fetch(object):
                 "coordinates": center
             },
             "properties":{
-                "times": tid_lists
+                "times": self.tid_lists
             }
         }
-        return None
+        return Json01
 
 
 # index_unit = np.timedelta64(1,'h')
