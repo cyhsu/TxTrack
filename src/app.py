@@ -21,6 +21,7 @@ def json_example():
     print('\n')
     print('\n\t\t','Post new Json to Javascripts')
     print('\t\t', output,'\n')
+    # return output
     return jsonify(output)
 
 if __name__ == "__main__":

@@ -94,12 +94,24 @@ class fetch(object):
 
     def json(self):
         #-- output json format of the particle trajectory with time.
-        center, ensembles = self.particle_integrate()
+        #center, ensembles = self.particle_integrate()
         Json01 = {
-            "type": "Features",
+            "type": "Feature",
             "geometry": {
                 "type": "LineString",
-                "coordinates": center
+                "coordinates": [
+                    [-96.40, 27.42],
+                    [-96.30, 27.82],
+                    [-96.20, 27.82],
+                    [-95.60, 27.20]
+                ]
+                # "coordinates": [
+                #     [-96.67, 27.43],
+                #     [-96.33, 27.33],
+                #     [-96.22, 27.00],
+                #     [-96.58, 28.42]
+                # ]
+                # "coordinates": np.squeeze(center)
             },
             "properties":{
                 "times": self.tid_lists
