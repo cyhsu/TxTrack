@@ -1,7 +1,6 @@
-import numpy as np
-import xarray as xr
-import os
+import numpy as np, xarray as xr, os
 from datetime import datetime, timedelta
+from glob import glob
 global ensembles
 np.random.seed(417)
 
@@ -12,12 +11,11 @@ class fetch(object):
         self.start_time, self.end_time = np.datetime64(start_time), np.datetime64(end_time)
         dt = np.timedelta64(1,'h')
         delta = int((self.end_time - self.start_time)/dt)
-        # self.tid_lists = ['{}:00:00.000Z'.format(
-        self.tid_lists = ['{}:00:00Z'.format(
+        self.tid_lists = ['{}'.format(
                             np.datetime_as_string(self.start_time +
                             i * dt)) for i in range(delta)]
         try:
-            fid_lists = ['../download/hfradar_{}:00:00.nc'.format(
+            fid_lists = ['./src/download/hfradar_{}.nc'.format(
                          np.datetime_as_string(self.start_time +
                          i * dt)) for i in range(delta)]
             self.ds = xr.open_mfdataset(fid_lists,
@@ -32,7 +30,7 @@ class fetch(object):
                                          'time_run',
                                          'DOPx',
                                          'DOPy'})
-            print('Retrieve Dataset from local folder')
+            print('\t\t\t','Retrieve Dataset from local folder\n')
         except:
             threddsURL= 'http://hfrnet-tds.ucsd.edu/thredds/dodsC/HFR/USEGC/6km/hourly/GNOME/' + \
                         'HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd'
@@ -46,7 +44,7 @@ class fetch(object):
                                          'time_run',
                                          'DOPx',
                                          'DOPy'})
-            print('Retrieve Dataset from UCSD HFRadar threddsURL')
+            print('\t\t\t','Retrieve Dataset from UCSD HFRadar threddsURL\n')
         self.ds = self.ds.sel(lon=slice(site_lon-3, site_lon+3),
                               lat=slice(site_lat-3, 31))
         self.ntim, self.nlat, self.nlon = self.ds.time.size, self.ds.lat.size, self.ds.lon.size

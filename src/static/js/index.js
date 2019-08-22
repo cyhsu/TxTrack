@@ -1,8 +1,17 @@
+var EndDate = new Date();
+EndDate.setUTCMinutes(0, 0, 0);
+
+var StartDate = new Date();
+StartDate.setUTCMinutes(0, 0, 0);
+StartDate.setDate(StartDate.getDate() - 2);
+
 var map = L.map('map', {
     zoom: 8,
     fullscreenControl: true,
     timeDimension: true,
     timeDimensionOptions: {
+        timeInterval: StartDate.toISOString() +
+                      "/" +EndDate.toISOString(),
         // timeInterval: "2019-06-01/2019-06-03",
         period: "PT1H",
         // currentTime: Date.parse("2019-06-01T00:00:00Z")
@@ -68,12 +77,14 @@ testLegend.addTo(map);
 
 $('#dtp_start').datetimepicker({
     inline: true,
-    value: new Date('2019-06-01'),
+    value: StartDate,
+    // value: new Date('2019-06-01'),
     format: "c"
 });
 $('#dtp_end').datetimepicker({
     inline: true,
-    value: new Date('2019-06-03'),
+    value: EndDate,
+    // value: new Date('2019-06-03'),
     format: "c"
 });
 
