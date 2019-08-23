@@ -33,7 +33,7 @@ var map = L.map('map', {
 });
 
 var icon = L.icon({
-    iconUrl: '../data/img/Icon_OilSpill.png',  //set the icon you want to appear
+    iconUrl: './img/Icon_OilSpill.png',  //set the icon you want to appear
     iconSize: [22, 22],
     iconAnchor: [5, 25]
 });

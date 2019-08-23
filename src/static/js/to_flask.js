@@ -10,7 +10,7 @@ $("#btn_lonlat").click(function() {
     'end_time': endTime,
   });
   console.log(site_info)
-  submit_to_flask(site_info);
+  submit_to_flask(site_info, map, icon);
   var newAvailableTimes = L.TimeDimension.Util.explodeTimeRange(startTime, endTime, 'PT1H');
   map.timeDimension.setAvailableTimes(newAvailableTimes, 'replace');
   map.timeDimension.setCurrentTime(startTime);
@@ -25,11 +25,12 @@ function submit_to_flask(site_info, map, icon) {
       data: site_info,
       success: function(resp) {
         // resp = JSON.parse(resp)
-        console.log('This is the directly output from flask')
-        console.log(resp)
+        // console.log('This is the directly output from flask')
+        // console.log(resp)
         var trajectory = resp
-        console.log('This should be successful to pass the data from flask to JS')
-        console.log(trajectory)
+        // console.log('This should be successful to pass the data from flask to JS')
+        // console.log(trajectory)
+
         //create geojson layer
         var geoJsonLayer = L.geoJson(trajectory, {
           pointToLayer: function(feature, latLng) {
@@ -49,6 +50,9 @@ function submit_to_flask(site_info, map, icon) {
         })
         //Add the timeLayer to map
         timeLayer.addTo(map)
+        // alert('Now is here')
+        // typeof map
+        // map.addLayer(timeLayer)
       },
       error: function(error){
         console.log(error);
