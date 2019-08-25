@@ -10,7 +10,8 @@ html *{
 #header{
     background-position: top right;
     background-repeat: no-repeat;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
+    padding-bottom: 0px;
     min-height: 80px;
 }
 
