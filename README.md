@@ -8,7 +8,14 @@
 	>  'Project co-PI': 'Kerri Whilden',
 	>  'Web Creator': 'Chuan-Yuan Hsu',
 	>  'Institute': 'Geochemical and Environmental Research Group - Texas A&M University',
-	>  'Institute': 'Gulf of Mexico Ocean Observing System'}
+	>  'Institute': 'Gulf of Mexico Ocean Observing System',
+	>  'Backend': 'Python - Flask', 
+	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
+
+[Demo] (https://drive.google.com/open?id=1TFxRrpMWCSRzh-8_nxmHFLo736q1zXwO)
+
+
+[Usage DEMO] (https://drive.google.com/open?id=1e64ex6t5P2DdTA6thu8k4Pq8oniZdCir)
 
 
 [![DOI](https://zenodo.org/badge/199946692.svg)](https://zenodo.org/badge/latestdoi/199946692)
