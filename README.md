@@ -17,5 +17,6 @@
 
 [Usage DEMO] (https://drive.google.com/open?id=1e64ex6t5P2DdTA6thu8k4Pq8oniZdCir)
 
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
 
 [![DOI](https://zenodo.org/badge/199946692.svg)](https://zenodo.org/badge/latestdoi/199946692)
