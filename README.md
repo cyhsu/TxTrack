@@ -12,10 +12,7 @@
 	>  'Backend': 'Python - Flask', 
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
-[![Demo](https://drive.google.com/open?id=1LBcIAO41XiSeyPQL88j7b1X0ZWzvaxrI)] (https://drive.google.com/open?id=1e64ex6t5P2DdTA6thu8k4Pq8oniZdCir)
-
-
-[Usage DEMO] (https://drive.google.com/open?id=1e64ex6t5P2DdTA6thu8k4Pq8oniZdCir)
+[Demo!! WATCH THIS VIDEO](https://drive.google.com/open?id=1TFxRrpMWCSRzh-8_nxmHFLo736q1zXwO)
 
 
 
