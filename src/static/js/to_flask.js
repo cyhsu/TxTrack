@@ -24,38 +24,31 @@ function submit_to_flask(site_info, map, icon) {
       contentType: "application/json",
       data: site_info,
       success: function(resp) {
-        // resp = JSON.parse(resp)
-        // console.log('This is the directly output from flask')
-        // console.log(resp)
         var trajectory = resp
-        // console.log('This should be successful to pass the data from flask to JS')
-        // console.log(trajectory)
-
         //create geojson layer
-        var geoJsonLayer = L.geoJson(trajectory, {
-          pointToLayer: function(feature, latLng) {
-            if (feature.properties.hasOwnProperty('last')) {
-              return new L.Marker(latLng, {
-                icon: icon
-              });
+        for (var i = 0, l = trajectory.length; i < l; i++){
+          var geoJsonLayer = L.geoJson(trajectory[i], {
+            pointToLayer: function(feature, latLng) {
+              if (feature.properties.hasOwnProperty('last')) {
+                return new L.Marker(latLng, {
+                  icon: icon
+                });
+              }
+              return L.circleMarker(latLng);
             }
-            return L.circleMarker(latLng);
-          }
-        });
-        //create time layer
-        var timeLayer = L.timeDimension.layer.geoJson(geoJsonLayer, {
-          updateTimeDimension: true,
-          addlastPoint: true,
-          waitForReady: true
-        })
-        //Add the timeLayer to map
-        timeLayer.addTo(map)
-        // alert('Now is here')
-        // typeof map
-        // map.addLayer(timeLayer)
+          });
+          //create time layer
+          var timeLayer = L.timeDimension.layer.geoJson(geoJsonLayer, {
+            updateTimeDimension: true,
+            addlastPoint: true,
+            waitForReady: true
+          })
+          //Add the timeLayer to map
+          timeLayer.addTo(map)
+        }
       },
       error: function(error){
-        console.log(error);
+        console.log('error');
       },
     })
   };

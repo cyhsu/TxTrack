@@ -1,4 +1,5 @@
 import numpy as np, xarray as xr, os
+import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from glob import glob
 global ensembles
@@ -48,6 +49,7 @@ class fetch(object):
         self.ds = self.ds.sel(lon=slice(site_lon-3, site_lon+3),
                               lat=slice(site_lat-3, 31))
         self.ntim, self.nlat, self.nlon = self.ds.time.size, self.ds.lat.size, self.ds.lon.size
+
     def particle_move(self,vel,loc):
         lon, lat = loc
         ux, vx = vel
@@ -64,27 +66,47 @@ class fetch(object):
         ux, vx = ds.water_u, ds.water_v
         return ux,vx
 
-    def particle_integrate(self,nperturb=1):
-        center = [[self.site_lon, self.site_lat]]
-        ensembles = {}
-        ensembles[0] = center.copy()
-        for tid in range(1,self.ntim-1):
-            # print(tid)
-            # print('\t\t\t  datetime process: {}'.format(self.ds.isel(time=tid).time.data))
-            #-- center run calculation
+    def particle_location(self):
+        locs = np.squeeze([[ (self.site_lon, self.site_lat)
+                            for i1 in range(self.ntim)]
+                            for i2 in range(self.ntim)])
+        for tid in range(1, self.ntim):
             vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))
-            loc = self.particle_move(vel, center[-1])
-            center += self.particle_newloc(center[-1],loc)
-            if nperturb >= 1:
-                #-- ensemble runs
-                ensemble = []
-                for loc_previous in ensembles[tid-1]:
-                    loc = self.particle_move(vel, loc_previous)
-                    for r2 in range(nperturb):
-                        ensemble += self.particle_newloc(loc_previous,
-                                                        loc, pertb = self.perturb())
-                ensembles[tid] = ensemble
-        return center, ensembles
+            for icon in range(tid):
+                loc = self.particle_move(vel, locs[icon][tid-1])
+                # ###--------   test print start --------------
+                # if icon == 1 :
+                #     print('time: ',tid,locs[icon][tid-1])
+                #     # self.ds.isel(time=tid).water_u.plot()
+                #     # plt.show()
+                #     # aaaaaaaa
+                # ###--------   test print end --------------
+                loc = np.squeeze(loc) if ~np.isnan(np.sum(loc)) else np.zeros(2)
+                locs[icon][tid] = locs[icon][tid-1] + loc
+        return locs
+
+    def particle_prob(self,nperturb=1):
+        return 'Construction Working on....'
+        # center = [[self.site_lon, self.site_lat]]
+        # ensembles = {}
+        # ensembles[0] = center.copy()
+        # for tid in range(1,self.ntim-1):
+        #     # print(tid)
+        #     # print('\t\t\t  datetime process: {}'.format(self.ds.isel(time=tid).time.data))
+        #     #-- center run calculation
+        #     vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))
+        #     loc = self.particle_move(vel, center[-1])
+        #     center += self.particle_newloc(center[-1],loc)
+        #     if nperturb >= 1:
+        #         #-- ensemble runs
+        #         ensemble = []
+        #         for loc_previous in ensembles[tid-1]:
+        #             loc = self.particle_move(vel, loc_previous)
+        #             for r2 in range(nperturb):
+        #                 ensemble += self.particle_newloc(loc_previous,
+        #                                                 loc, pertb = self.perturb())
+        #         ensembles[tid] = ensemble
+        # return center, ensembles
 
     def perturb(self):
         purb = 50 * 0.05
@@ -94,29 +116,19 @@ class fetch(object):
 
     def json(self):
         #-- output json format of the particle trajectory with time.
-        #center, ensembles = self.particle_integrate()
-        Json01 = {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [-96.40, 27.42],
-                    [-96.30, 27.82],
-                    [-96.20, 27.82],
-                    [-95.60, 27.20]
-                ]
-                # "coordinates": [
-                #     [-96.67, 27.43],
-                #     [-96.33, 27.33],
-                #     [-96.22, 27.00],
-                #     [-96.58, 28.42]
-                # ]
-                # "coordinates": np.squeeze(center)
-            },
-            "properties":{
-                "times": self.tid_lists
-            }
-        }
+        locations = self.particle_location()
+        Json01 = []
+        for num, loc in enumerate(locations):
+            Json01.append({
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": loc.tolist()
+                },
+                "properties":{
+                    "times": self.tid_lists
+                }
+            })
         return Json01
 
 
