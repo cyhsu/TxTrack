@@ -18,5 +18,14 @@
 
 
 
-
+@misc{lia_corrales_2015_15991,
+    author       = {Chuan-Yuan Hsu, Kerri Whilden, Steve DiMarco, Brian Buckingham},
+    title        = {{TGLO Particle Tracking Tool along the Texas Shelf}},
+    month        = Aug,
+    year         = 2019,
+    doi          = {10.5281/zenodo.3377881},
+    version      = {0.9-alpha},
+    publisher    = {Zenodo},
+    url          = {https://doi.org/10.5281/zenodo.3377881}
+    }
 [![DOI](https://zenodo.org/badge/199946692.svg)](https://zenodo.org/badge/latestdoi/199946692)
