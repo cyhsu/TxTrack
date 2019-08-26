@@ -8,3 +8,6 @@
 	> 	'Project co-PI': 'Kerri Whilden',
 	>  'Web Creator': 'Chuan-Yuan Hsu',
 	>	'Institute': 'Geochemical and Environmental Research Group - Texas A&M University; Gulf of Mexico Ocean Observing System'}
+
+
+[![DOI](https://zenodo.org/badge/199946692.svg)](https://zenodo.org/badge/latestdoi/199946692)
