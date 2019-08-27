@@ -14,12 +14,13 @@
 	>  'Backend': 'Python - Flask', 
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
+##### Screen Shot
 ![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/ProductPicture.png)
 
-
+##### Screen Video (DEMO)
 [Demo!! WATCH THIS VIDEO](https://drive.google.com/open?id=1TFxRrpMWCSRzh-8_nxmHFLo736q1zXwO)
 
 
-
+##### How to cite this toolbox.
 Chuan-Yuan Hsu, Kerri Whilden, Steve DiMarco, & Brian Buckingham. (2019, August 26). Pre-Release: Particle Trajectories by Utilizing High-Frequency Radar (Version v0.9-alpha). Zenodo. http://doi.org/10.5281/zenodo.3377881    
 [![DOI](https://zenodo.org/badge/199946692.svg)](https://zenodo.org/badge/latestdoi/199946692)
