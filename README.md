@@ -14,6 +14,9 @@
 	>  'Backend': 'Python - Flask', 
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
+![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/ProductPicture.png)
+
+
 [Demo!! WATCH THIS VIDEO](https://drive.google.com/open?id=1TFxRrpMWCSRzh-8_nxmHFLo736q1zXwO)
 
 
