@@ -11,4 +11,4 @@
 
 
 
-docker run -p 5000:8012 --volume=/Users/cyhsu/dev/TxTrack/dockerized/a2:/home/TxTrack txtrack-flask
+docker run -p 5000:8012 --volume=/dockerized:/home/TxTrack txtrack-flask
