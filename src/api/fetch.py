@@ -1,5 +1,4 @@
 import numpy as np, xarray as xr, os
-import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from glob import glob
 global ensembles
@@ -71,16 +70,10 @@ class fetch(object):
                             for i1 in range(self.ntim)]
                             for i2 in range(self.ntim)])
         for tid in range(1, self.ntim):
-            vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))
+            #vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))   #-- command out: 2019-12-11  
+            vel = self.ds.isel(time=tid).u, self.ds.isel(time=tid).v
             for icon in range(tid):
                 loc = self.particle_move(vel, locs[icon][tid-1])
-                # ###--------   test print start --------------
-                # if icon == 1 :
-                #     print('time: ',tid,locs[icon][tid-1])
-                #     # self.ds.isel(time=tid).water_u.plot()
-                #     # plt.show()
-                #     # aaaaaaaa
-                # ###--------   test print end --------------
                 loc = np.squeeze(loc) if ~np.isnan(np.sum(loc)) else np.zeros(2)
                 locs[icon][tid] = locs[icon][tid-1] + loc
         return locs
