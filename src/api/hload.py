@@ -10,7 +10,7 @@ import time
 from glob import glob
 
 #-- Last Time Updated:
-head_dirc = '../download/'
+head_dirc = './download/'
 flists = glob(head_dirc+'*.nc'); flists.sort()
 LastTimeUpdate = flists[-1].split('hfradar_')[-1][:-3]
 
@@ -26,6 +26,6 @@ print(LastTimeUpdate)
 for tid in range(1,ds.time.size):
     dsoutput = ds.isel(time=tid)
     print('\t Load and Store Dataset at time: {}'.format(dsoutput.time.data))
-    OutNC = head_dirc+'hfradar_{}.nc'.format(np.datetime_as_string(dsoutput.time.data)[:-7])
+    OutNC = head_dirc+'hfradar_{}.nc'.format(np.datetime_as_string(dsoutput.time.data)[:-10])
     print(OutNC)
     dsoutput.to_netcdf(OutNC)
