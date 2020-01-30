@@ -15,11 +15,10 @@
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
 ##### Screen Shot
-![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/ProductPicture.png)
+![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.png)
 
 ##### Screen Video (DEMO)
-
-![Demo Video!!(https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.png)]
+![Demo Video!!]()
 
 
 ##### How to cite this toolbox.
