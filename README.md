@@ -15,8 +15,7 @@
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
 ##### Screen Shot
-![[Screen Shot](demo/HFradar_demo.png)](https://youtu.be/OPkEODS-lZQ)
-
+[![Demo](demo/HFradar_demo.png)](https://youtu.be/OPkEODS-lZQ "Put hover text here!")
 
 
 ##### How to cite this toolbox.
