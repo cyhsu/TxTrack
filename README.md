@@ -18,7 +18,7 @@
 ![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/ProductPicture.png)
 
 ##### Screen Video (DEMO)
-[![Demo Video!!(https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.jpb)](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.mov)]
+[![Demo Video!!(https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.png)](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.mp4)]
 
 
 ##### How to cite this toolbox.
