@@ -18,7 +18,7 @@
 ![Screen Shot](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/ProductPicture.png)
 
 ##### Screen Video (DEMO)
-<video src="https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.mp4" width="320" height="200" controls preload></video>
+<video src="./demo/HFradar_demo.mp4" width="320" height="200" controls preload></video>
 
 
 [![Demo Video!!(https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.png)](https://github.com/cyhsu/leaflet.timedimention.trajectory/blob/master/demo/HFradar_demo.mp4)]
