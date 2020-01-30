@@ -2,4 +2,4 @@ MAILTO= ""
 
 # crontab
 
-0 * * * * python /home/TxTrack/src/api/hload.py
+0 * * * * python src/api/hload.py
