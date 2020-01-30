@@ -15,10 +15,8 @@
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
 ##### Screen Shot
-![Screen Shot](demo/HFradar_demo.png)
+![[Screen Shot](demo/HFradar_demo.png)](demo/HFradar_demo.mp4)
 
-##### Screen Video (DEMO)
-![Demo Video!!]()
 
 
 ##### How to cite this toolbox.
