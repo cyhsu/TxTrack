@@ -2,7 +2,7 @@
 
 #### Project Structure
 
-	> {'Project short name': 'ParTHdar',
+	> {'Project short name': 'TxTrack',
 	>  'Project long name': 'TGLO Particle tracking using High-Frequency Radar',
 	>  'Funding Source': 'Texas General Land Office', 
 	>  'Project PI': 'Kerri Whilden',
@@ -14,8 +14,8 @@
 	>  'Backend': 'Python - Flask', 
 	>  'Frontend': 'Javascript - leaflet, leaflet timedimension'}
 
-##### Screen Shot
-[![Demo](demo/HFradar_demo.png)](https://youtu.be/OPkEODS-lZQ "Put hover text here!")
+##### Demo
+[![Demo](demo/HFradar_demo.png)](https://youtu.be/OPkEODS-lZQ)
 
 
 ##### How to cite this toolbox.
