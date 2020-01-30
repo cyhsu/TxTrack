@@ -21,7 +21,7 @@
 <video src="./demo/HFradar_demo.mp4" width="320" height="200" controls preload></video>
 
 
-[![Demo Video!!(./demo/HFradar_demo.png)](./demo/HFradar_demo.mp4)]
+[![Demo Video!!(demo/HFradar_demo.png)](./demo/HFradar_demo.mp4)]
 
 
 ##### How to cite this toolbox.
