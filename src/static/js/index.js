@@ -1,22 +1,23 @@
 var EndDate = new Date();
-EndDate.setUTCMinutes(0, 0, 0);
+EndDate.setUTCMinutes(30, 0, 0);
+EndDate.setHours(EndDate.getHours() - 1);
 
 var StartDate = new Date();
-StartDate.setUTCMinutes(0, 0, 0);
-StartDate.setDate(StartDate.getDate() - 2);
+StartDate.setUTCMinutes(30, 0, 0);
+StartDate.setDate(StartDate.getDate() - 1);
 
 var map = L.map('map', {
     zoom: 8,
-    fullscreenControl: true,
+    center: [27.855, -95.55],
+    //fullscreenControl: true,
     timeDimension: true,
+    timeDimensionControl: true,
     timeDimensionOptions: {
         timeInterval: StartDate.toISOString() +
-                      "/" +EndDate.toISOString(),
-        // timeInterval: "2019-06-01/2019-06-03",
+                      "/" + EndDate.toISOString(),
         period: "PT1H",
-        // currentTime: Date.parse("2019-06-01T00:00:00Z")
+        currentTime: StartDate.getTime() 
     },
-    timeDimensionControl: true,
     timeDimensionControlOptions: {
         autoPlay: true,
         loopButton: true,
@@ -24,12 +25,11 @@ var map = L.map('map', {
         playReverseButton: true,
         limitSliders: true,
         playerOptions: {
-            buffer: 0,
+            buffer: 24,
             transitionTime: 250,
             loop: true,
         }
     },
-    center: [27.855, -95.55],
 });
 
 var icon = L.icon({
@@ -42,13 +42,14 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var testWMS = "https://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/GNOME/HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd"
+var testWMS = "http://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/GNOME/HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd"
+//var testWMS = "https://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/RTV/HFRADAR_US_East_and_Gulf_Coast_6km_Resolution_Hourly_RTV_best.ncd"
 var testLayer = L.tileLayer.wms(testWMS, {
     layers: 'surface_sea_water_velocity',
     version: '1.3.0',
     format: 'image/png',
     transparent: true,
-    styles: 'prettyvec/rainbow',
+    styles: 'fancyvec/rainbow',
     markerscale: 15,
     markerspacing: 10,
     abovemaxcolor: "extend",
@@ -56,9 +57,14 @@ var testLayer = L.tileLayer.wms(testWMS, {
     colorscalerange: "0,0.4",
     attribution: 'TAMU HF RADAR | sea_water_velocity'
 });
-var proxy = 'server/proxy.php';
+/* var proxy = 'server/proxy.php';
 var testTimeLayer = L.timeDimension.layer.wms(testLayer, {
     proxy: proxy,
+    updateTimeDimension: true
+});
+testTimeLayer.addTo(map);*/
+
+var testTimeLayer = L.timeDimension.layer.wms(testLayer, {
     updateTimeDimension: true
 });
 testTimeLayer.addTo(map);
@@ -67,7 +73,7 @@ var testLegend = L.control({
     position: 'topright'
 });
 testLegend.onAdd = function(map) {
-    var src = testWMS + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetLegendGraphic&LAYER=surface_sea_water_velocity&PALETTE=rainbow&colorscalerange=0,1.5";
+    var src = testWMS + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetLegendGraphic&LAYER=surface_sea_water_velocity&PALETTE=rainbow&colorscalerange=0,0.4";
     var div = L.DomUtil.create('div', 'info legend');
     div.innerHTML +=
         '<img src="' + src + '" alt="legend">';

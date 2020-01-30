@@ -19,34 +19,20 @@ class fetch(object):
                          np.datetime_as_string(self.start_time +
                          i * dt)) for i in range(delta)]
             self.ds = xr.open_mfdataset(fid_lists,
-                        combine='nested',
-                        concat_dim='time').sel(time=slice(start_time,
-                        end_time)).drop({'site_lon',
-                                         'site_lat',
-                                         'site_code',
-                                         'site_netCode',
-                                         'procParams',
-                                         'time_offset',
-                                         'time_run',
-                                         'DOPx',
-                                         'DOPy'})
+                                        combine='nested',
+                                        concat_dim='time'
+                                       ).sel(time=slice(start_time,end_time))
+            self.ds = self.ds[['water_u','water_v']]
             print('\t\t\t','Retrieve Dataset from local folder\n')
         except:
             threddsURL= 'http://hfrnet-tds.ucsd.edu/thredds/dodsC/HFR/USEGC/6km/hourly/GNOME/' + \
                         'HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd'
-            self.ds = xr.open_dataset(threddsURL).sel(time=slice(start_time,
-                        end_time)).drop({'site_lon',
-                                         'site_lat',
-                                         'site_code',
-                                         'site_netCode',
-                                         'procParams',
-                                         'time_offset',
-                                         'time_run',
-                                         'DOPx',
-                                         'DOPy'})
+            self.ds = xr.open_dataset(threddsURL).sel(time=slice(start_time,end_time))
+            self.ds = self.ds[['water_u','water_v']]
             print('\t\t\t','Retrieve Dataset from UCSD HFRadar threddsURL\n')
         self.ds = self.ds.sel(lon=slice(site_lon-3, site_lon+3),
-                              lat=slice(site_lat-3, 31))
+                              lat=slice(site_lat-3, 31)).load()
+        print('\t\t\t', 'Load the entire dataset');
         self.ntim, self.nlat, self.nlon = self.ds.time.size, self.ds.lat.size, self.ds.lon.size
 
     def particle_move(self,vel,loc):
@@ -70,42 +56,19 @@ class fetch(object):
                             for i1 in range(self.ntim)]
                             for i2 in range(self.ntim)])
         for tid in range(1, self.ntim):
-            #vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))   #-- command out: 2019-12-11  
-            vel = self.ds.isel(time=tid).u, self.ds.isel(time=tid).v
+            vel = self.ds.isel(time=tid).water_u, self.ds.isel(time=tid).water_v 
             for icon in range(tid):
                 loc = self.particle_move(vel, locs[icon][tid-1])
                 loc = np.squeeze(loc) if ~np.isnan(np.sum(loc)) else np.zeros(2)
-                locs[icon][tid] = locs[icon][tid-1] + loc
+                locs[icon][tid] = locs[icon][tid-1] + loc*3.600/np.array([96.,110.])
         return locs
 
     def particle_prob(self,nperturb=1):
         return 'Construction Working on....'
-        # center = [[self.site_lon, self.site_lat]]
-        # ensembles = {}
-        # ensembles[0] = center.copy()
-        # for tid in range(1,self.ntim-1):
-        #     # print(tid)
-        #     # print('\t\t\t  datetime process: {}'.format(self.ds.isel(time=tid).time.data))
-        #     #-- center run calculation
-        #     vel = self.dataset_difference(self.ds.isel(time=slice(tid-1,tid+1)))
-        #     loc = self.particle_move(vel, center[-1])
-        #     center += self.particle_newloc(center[-1],loc)
-        #     if nperturb >= 1:
-        #         #-- ensemble runs
-        #         ensemble = []
-        #         for loc_previous in ensembles[tid-1]:
-        #             loc = self.particle_move(vel, loc_previous)
-        #             for r2 in range(nperturb):
-        #                 ensemble += self.particle_newloc(loc_previous,
-        #                                                 loc, pertb = self.perturb())
-        #         ensembles[tid] = ensemble
-        # return center, ensembles
 
     def perturb(self):
         purb = 50 * 0.05
         return np.random.uniform(-1*purb,purb,[2])
-
-
 
     def json(self):
         #-- output json format of the particle trajectory with time.
