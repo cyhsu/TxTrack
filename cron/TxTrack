@@ -1,5 +1,5 @@
-MAILTO= ""
+# Setup a cron schedule
+SHELL=/bin/bash
 
 # crontab
-
-0 * * * * python src/api/hload.py
+0 * * * * /usr/local/bin/python3 /TxTrack/src/api/hload.py >> /TxTrack/logs.log 2>&1
