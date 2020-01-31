@@ -1,44 +1,31 @@
 ###
 # TxTrack: Particle Trajectory Using High Frequency Radar along the Texas Coast.
 ###
-
-
-FROM ubuntu:18.04
+FROM python:3.6.4-slim
 
 #  AuthorWHO
-MAINTAINER cyhsu
+MAINTAINER frankehsu "chsu1@tamu.edu"
 
-# PORT
-EXPOSE 8012
+ENV HOME /TxTrack
 
-# Optimization
-RUN apt-get update && apt-get -y install cron python3-pip
+#  Optimization
+RUN apt-get update && apt-get -y install cron vim
 
-
-# User TxTrack does not exist yet. 
-RUN mkdir -p /home/TxTrack
-
-ENV HOME /home/TxTrack
+#  Install Required Packages
+COPY ./requirements.txt $HOME/requirements.txt
 
 WORKDIR $HOME
 
-ADD . $HOME/
+RUN pip3 install -r requirements.txt
 
-WORKDIR $HOME/download
+# Copy  everything into app directory 
+COPY . $HOME/
 
-###
-# Install Requirements.
-###
-RUN pip3 install requirements.txt
+# Set script permission to execute 
+RUN chmod +x $HOME/runTxTrack.sh
 
+# Set communication port.
+EXPOSE 8012
 
-###
-# Crontab
-###
-COPY cron/TxTrack /var/spool/cron/crontabs/TxTrack
-
-##
-# Execute Script.
-##
-CMD ["runTxTrack.sh"]
-
+#ENTRYPOINT ./runTxTrack.sh
+CMD ["./runTxTrack.sh"]
