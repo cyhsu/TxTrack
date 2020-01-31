@@ -96,4 +96,4 @@ if __name__ == '__main__':
     start_time = '2018-07-01'
     end_time  = '2018-07-03'
     cls = fetch(-94.88, 29.11,start_time,end_time)
-    cls.particle_integrate()
+    json01 = cls.json()

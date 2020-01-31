@@ -21,6 +21,7 @@ def json_example():
     SiteStartTime, SiteEndTime = req['start_time'][:-5], req['end_time'][:-5]
     cls = fetch(SiteLon, SiteLat, SiteStartTime, SiteEndTime)
     output = cls.json()
+    print(output[0])
     return jsonify(output)
 
 if __name__ == "__main__":
