@@ -4,5 +4,4 @@ from src.app import app
 __author__ = 'Franke'
 
 if __name__ == '__main__':
-  run_with_ngrok(app)
-  app.run()
+  app.run(debug=True, port=8012)
