@@ -1,5 +1,4 @@
-from flask_ngrok import run_with_ngrok
-from src.app import app
+from src.app_colab import app
 
 __author__ = 'Franke'
 
