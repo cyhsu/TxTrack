@@ -91,14 +91,14 @@
 				<label for="end_time">End time (local time)</label><br/><input id="dtp_end" name="end_time" type="text" >
       </div>
 			<div style="float:left; margin-left: 6px; margin-right: 6px;">
-				<form> <h3> Initial set up for spill trajectory </h3>
+				<form> <h3> The initial release point for oil spill tracking </h3>
 					<div style="float:left; margin-right: 15px;">
-						<label for="longitude">Longitude</label><br/>
-						<input type="number" id="txt_longitude" value="" name="longitude" maxlength="7" size="20"></input>
+						<label for="longitude">Longitude (deg-east)</label><br/>
+						<input type="number" id="txt_longitude" value="" name="longitude" maxlength="7" size="20" placeholder='-95.8'></input>
 					</div>
 					<div style="float:left; margin-right: 15px;">
-						<label for="latitude">Latitude</label><br/>
-						<input type="number" id="txt_latitude" value="" name="latitude" maxlength="7" size="20"></input>
+						<label for="latitude">Latitude (deg-north)</label><br/>
+						<input type="number" id="txt_latitude" value="" name="latitude" maxlength="7" size="20" placeholder='27.8'></input>
 					</div>
 					<div>
 						<button type="button" id="btn_lonlat" class="btn"> Site Information Submit</button>

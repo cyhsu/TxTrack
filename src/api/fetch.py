@@ -24,9 +24,17 @@ class fetch(object):
                                        ).sel(time=slice(start_time,end_time))
             self.ds = self.ds[['water_u','water_v']]
             print('\t\t\t','Retrieve Dataset from local folder\n')
-        except:
+        except AttributeError:
             threddsURL= 'http://hfrnet-tds.ucsd.edu/thredds/dodsC/HFR/USEGC/6km/hourly/GNOME/' + \
                         'HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd'
+            self.ds = xr.open_dataset(threddsURL).sel(time=slice(start_time,end_time))
+            self.ds = self.ds[['water_u','water_v']]
+            print('\t\t\t','Retrieve Dataset from UCSD HFRadar threddsURL\n')
+        except OSError:
+#http://hfrnet-tds.ucsd.edu/thredds/dodsC/HFR/USEGC/6km/hourly/RTV/HFRADAR_US_East_and_Gulf_Coast_6km_Resolution_Hourly_RTV_best.ncd?lat[0:1:459],lon[0:1:700],time[0:1:70525],u[0:1:0][0:1:0][0:1:0],v[0:1:0][0:1:0][0:1:0]
+            threddsURL= 'http://hfrnet-tds.ucsd.edu/thredds/dodsC/HFR/USEGC/6km/hourly/GNOME/' + \
+                        'HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd' +\
+                        '?lat,lon,time,water_u,water_v'
             self.ds = xr.open_dataset(threddsURL).sel(time=slice(start_time,end_time))
             self.ds = self.ds[['water_u','water_v']]
             print('\t\t\t','Retrieve Dataset from UCSD HFRadar threddsURL\n')

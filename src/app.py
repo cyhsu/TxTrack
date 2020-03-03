@@ -1,8 +1,10 @@
 from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS
 from src.api.fetch import fetch
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 def dir_last_updated(folder):
     return str(max(os.path.getmtime(os.path.join(root_path, f))

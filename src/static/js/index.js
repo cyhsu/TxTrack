@@ -42,11 +42,12 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var testWMS = "http://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/GNOME/HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd"
-//var testWMS = "https://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/RTV/HFRADAR_US_East_and_Gulf_Coast_6km_Resolution_Hourly_RTV_best.ncd"
+//var testWMS = "http://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/GNOME/HFRADAR,_US_East_and_Gulf_Coast,_6km_Resolution,_Hourly_RTV_(GNOME)_best.ncd";
+var testWMS = "https://hfrnet-tds.ucsd.edu/thredds/wms/HFR/USEGC/6km/hourly/RTV/HFRADAR_US_East_and_Gulf_Coast_6km_Resolution_Hourly_RTV_best.ncd";
+
 var testLayer = L.tileLayer.wms(testWMS, {
     layers: 'surface_sea_water_velocity',
-    version: '1.3.0',
+//    version: '1.3.0',
     format: 'image/png',
     transparent: true,
     styles: 'fancyvec/rainbow',
@@ -54,7 +55,7 @@ var testLayer = L.tileLayer.wms(testWMS, {
     markerspacing: 10,
     abovemaxcolor: "extend",
     belowmincolor: "extend",
-    colorscalerange: "0,0.4",
+    colorscalerange: "0,0.5",
     attribution: 'TAMU HF RADAR | sea_water_velocity'
 });
 /* var proxy = 'server/proxy.php';
@@ -74,6 +75,7 @@ var testLegend = L.control({
 });
 testLegend.onAdd = function(map) {
     var src = testWMS + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetLegendGraphic&LAYER=surface_sea_water_velocity&PALETTE=rainbow&colorscalerange=0,0.4";
+    //var src = testWMS + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetLegendGraphic&LAYER=surface_sea_water_velocity&PALETTE=rainbow&colorscalerange=0,0.4";
     var div = L.DomUtil.create('div', 'info legend');
     div.innerHTML +=
         '<img src="' + src + '" alt="legend">';
