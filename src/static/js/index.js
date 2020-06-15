@@ -1,9 +1,9 @@
 var EndDate = new Date();
-EndDate.setUTCMinutes(30, 0, 0);
+EndDate.setUTCMinutes(00, 0, 0);
 EndDate.setHours(EndDate.getHours() - 1);
 
 var StartDate = new Date();
-StartDate.setUTCMinutes(30, 0, 0);
+StartDate.setUTCMinutes(00, 0, 0);
 StartDate.setDate(StartDate.getDate() - 1);
 
 var map = L.map('map', {
@@ -98,9 +98,9 @@ $('#dtp_end').datetimepicker({
 
 $("#btn_timerange").click(function(){
     var startTime = new Date($('#dtp_start').val());
-    startTime.setUTCMinutes(30, 0, 0);
+    startTime.setUTCMinutes(00, 0, 0);
     var endTime = new Date($('#dtp_end').val());
-    endTime.setUTCMinutes(30, 0, 0);
+    endTime.setUTCMinutes(00, 0, 0);
     var newAvailableTimes = L.TimeDimension.Util.explodeTimeRange(startTime, endTime, 'PT1H');
     map.timeDimension.setAvailableTimes(newAvailableTimes, 'replace');
     map.timeDimension.setCurrentTime(startTime.getTime());
@@ -108,9 +108,9 @@ $("#btn_timerange").click(function(){
 
 $("#btn_limitrange").click(function(){
     var startTime = new Date($('#dtp_start').val());
-    startTime.setUTCMinutes(30, 0, 0);
+    startTime.setUTCMinutes(00, 0, 0);
     var endTime = new Date($('#dtp_end').val());
-    endTime.setUTCMinutes(30, 0, 0);
+    endTime.setUTCMinutes(00, 0, 0);
     map.timeDimension.setLowerLimit(startTime);
     map.timeDimension.setUpperLimit(endTime);
     map.timeDimension.setCurrentTime(startTime.getTime());
